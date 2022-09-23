@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "vacina")
@@ -16,14 +18,22 @@ public class Vacina {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_vacina;
 
+    @NotNull
+    @Size(min = 3, max = 45)
     private String nome_vacina;
 
+    @NotNull
+    @Size(min = 3, max = 45)
     private String descricao;
 
+    @NotNull
+    @Size(min = 3, max = 100)
     private String lote;
 
+    @NotNull
     private Date data_vencimento;
 
+    @NotNull
     private Date data_producao;
 
     public Long getId_vacina() {

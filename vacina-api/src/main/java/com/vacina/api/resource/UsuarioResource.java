@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class UsuarioResource {
     }
 
     @PostMapping // Anotação e metodo que insere um novo registro metodo Post
-    public ResponseEntity<Usuario> criar(@RequestBody Usuario usuario, HttpServletResponse response) {
+    public ResponseEntity<Usuario> criar(@Valid @RequestBody Usuario usuario, HttpServletResponse response) {
         Usuario userSave = usuarioRepository.save(usuario);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
@@ -45,11 +46,8 @@ public class UsuarioResource {
     public ResponseEntity<Usuario> listarUserId(@PathVariable Long id) {
         Optional<Usuario> usuario = usuarioRepository.findById(id);
 
-        return usuario.isPresent() ? ResponseEntity.ok(usuario.get()) : ResponseEntity.notFound().build(); // devolve
-                                                                                                           // 404 caso
-                                                                                                           // busque um
-                                                                                                           // id que não
-                                                                                                           // existe
+        return usuario.isPresent() ? ResponseEntity.ok(usuario.get()) : ResponseEntity.notFound().build();
+        // devolve 404 caso busque um id que não existe
     }
 
 }

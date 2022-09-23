@@ -29,9 +29,7 @@ public class VacinaResource {
     public ResponseEntity<Vacina> listarVacinaLote(@PathVariable Long id_vacina) {
         Optional<Vacina> vacina = vacinaRepository.findById(id_vacina);
 
-        return vacina.isPresent() ? ResponseEntity.ok(vacina.get()) : ResponseEntity.notFound().build(); // devolve 404
-                                                                                                         // caso busque
-                                                                                                         // um id que
-                                                                                                         // não existe
+        return vacina.isPresent() ? ResponseEntity.ok(vacina.get()) : ResponseEntity.notFound().build();
+        // devolve 404 caso busque um id que não existe
     }
 }
