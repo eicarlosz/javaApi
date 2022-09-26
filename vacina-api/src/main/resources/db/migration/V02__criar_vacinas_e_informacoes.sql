@@ -1,14 +1,12 @@
-CREATE TABLE IF NOT EXISTS vacina (
-  id_vacina INT NOT NULL AUTO_INCREMENT,
-  nome_vacina VARCHAR(45) NOT NULL,
-  descricao VARCHAR(45) NOT NULL,
-  lote VARCHAR(100) NOT NULL,
-  data_vencimento DATE NOT NULL,
-  data_producao DATE NOT NULL,
-  UNIQUE INDEX `id_UNIQUE` (`id_vacina` ASC) VISIBLE,
-  PRIMARY KEY (id_vacina)
-) ENGINE=InnoDB DEFAULT CHARSET = utf8;
-
-INSERT INTO vacina (nome_vacina, descricao, lote, data_vencimento, data_producao)
-VALUES ('VACINAFERNANDEX', 'VACINA MAIS DA FAVELA QUE EXISTE','Fernan001', '2022-11-22',
-'2001-02-08');
+CREATE TABLE IF NOT EXISTS `vacinaBD`.`vacina` (
+  `id_vacina` INT NOT NULL AUTO_INCREMENT,
+  `numero_vacina` VARCHAR(50) NOT NULL,
+  `lote_vacina` VARCHAR(50) NOT NULL,
+  `nome_vacina` VARCHAR(45) NOT NULL,
+  `descricao_vacina` VARCHAR(400) NOT NULL,
+  `data_vencimento` DATE NOT NULL,
+  `data_producao` DATE NOT NULL,
+  PRIMARY KEY (`id_vacina`, `numero_vacina`, `lote_vacina`),
+  UNIQUE INDEX `numero_vacina_UNIQUE` (`numero_vacina` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;

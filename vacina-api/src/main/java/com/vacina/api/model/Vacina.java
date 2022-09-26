@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "vacina")
@@ -16,14 +18,26 @@ public class Vacina {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_vacina;
 
+    @NotNull
+    @Size(min = 3, max = 50)
+    private String numero_vacina;
+
+    @NotNull
+    @Size(min = 3, max = 100)
+    private String lote_vacina;
+
+    @NotNull
+    @Size(min = 3, max = 45)
     private String nome_vacina;
 
-    private String descricao;
+    @NotNull
+    @Size(min = 3, max = 45)
+    private String descricao_vacina;
 
-    private String lote;
-
+    @NotNull
     private Date data_vencimento;
 
+    @NotNull
     private Date data_producao;
 
     public Long getId_vacina() {
@@ -34,6 +48,22 @@ public class Vacina {
         this.id_vacina = id_vacina;
     }
 
+    public String getNumero_vacina() {
+        return numero_vacina;
+    }
+
+    public void setNumero_vacina(String numero_vacina) {
+        this.numero_vacina = numero_vacina;
+    }
+
+    public String getLote_vacina() {
+        return lote_vacina;
+    }
+
+    public void setLote_vacina(String lote_vacina) {
+        this.lote_vacina = lote_vacina;
+    }
+
     public String getNome_vacina() {
         return nome_vacina;
     }
@@ -42,20 +72,12 @@ public class Vacina {
         this.nome_vacina = nome_vacina;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescricao_vacina() {
+        return descricao_vacina;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getLote() {
-        return lote;
-    }
-
-    public void setLote(String lote) {
-        this.lote = lote;
+    public void setDescricao_vacina(String descricao_vacina) {
+        this.descricao_vacina = descricao_vacina;
     }
 
     public Date getData_vencimento() {
