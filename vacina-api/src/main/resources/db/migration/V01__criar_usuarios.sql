@@ -1,13 +1,14 @@
-CREATE TABLE IF NOT EXISTS usuario (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(50) NOT NULL,
-    nascimento DATE NOT NULL,
-    sexo CHAR(1) NOT NULL,
-    UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE
-) ENGINE=InnoDB DEFAULT CHARSET = utf8;
-
-
-INSERT INTO usuario (nome, nascimento, sexo) values ('CRIA!', '2002-10-27', 'M');
-INSERT INTO usuario (nome, nascimento, sexo) values ('CACHORRO LOKO', '1999-01-12', 'M');
-
-    -- tipo enum('Crianca', 'Adulto', 'Idoso'),
+CREATE TABLE IF NOT EXISTS `vacinaBD`.`paciente` (
+  `id_paciente` INT NOT NULL AUTO_INCREMENT,
+  `numero_paciente` INT NOT NULL,
+  `nome_paciente` VARCHAR(45) NOT NULL,
+  `nascimento` DATE NOT NULL,
+  `sexo` ENUM('M', 'F') NOT NULL,
+  `login_paciente` VARCHAR(50) CHARACTER SET 'utf8mb3' NOT NULL,
+  `senha_paciente` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id_paciente`, `numero_paciente`),
+  UNIQUE INDEX `id_usuario_UNIQUE` (`numero_paciente` ASC) VISIBLE,
+  UNIQUE INDEX `nome_usuario_UNIQUE` (`login_paciente` ASC) VISIBLE,
+  UNIQUE INDEX `id_paciente_UNIQUE` (`id_paciente` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;

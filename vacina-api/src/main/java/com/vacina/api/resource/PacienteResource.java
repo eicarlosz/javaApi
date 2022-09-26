@@ -17,36 +17,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.vacina.api.model.Usuario;
-import com.vacina.api.repository.UsuarioRepository;
+import com.vacina.api.model.Paciente;
+import com.vacina.api.repository.PacienteRepository;
 
 @RestController
-@RequestMapping("/usuarios")
-public class UsuarioResource {
+@RequestMapping("/pacientes")
+public class PacienteResource {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private PacienteRepository usuarioRepository;
 
     @GetMapping // Anotação e metodo que busca todos os registros
-    public List<Usuario> listarUsers() {
+    public List<Paciente> listarUsers() {
         return usuarioRepository.findAll();
     }
 
     @PostMapping // Anotação e metodo que insere um novo registro metodo Post
-    public ResponseEntity<Usuario> criar(@Valid @RequestBody Usuario usuario, HttpServletResponse response) {
-        Usuario userSave = usuarioRepository.save(usuario);
+    public ResponseEntity<Paciente> criar(@Valid @RequestBody Paciente paciente, HttpServletResponse response) {
+        Paciente userSave = usuarioRepository.save(paciente);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
-                .buildAndExpand(userSave.getId()).toUri();
+                .buildAndExpand(userSave.getId_paciente()).toUri();
         response.setHeader("Location", uri.toASCIIString());
         return ResponseEntity.created(uri).body(userSave);
     }
 
     @GetMapping("/{id}") // Anotação e metodo que busca pelo id metodo get
-    public ResponseEntity<Usuario> listarUserId(@PathVariable Long id) {
-        Optional<Usuario> usuario = usuarioRepository.findById(id);
+    public ResponseEntity<Paciente> listarUserId(@PathVariable Long id) {
+        Optional<Paciente> paciente = usuarioRepository.findById(id);
 
-        return usuario.isPresent() ? ResponseEntity.ok(usuario.get()) : ResponseEntity.notFound().build();
+        return paciente.isPresent() ? ResponseEntity.ok(paciente.get()) : ResponseEntity.notFound().build();
         // devolve 404 caso busque um id que não existe
     }
 
