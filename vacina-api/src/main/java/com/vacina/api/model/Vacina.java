@@ -40,6 +40,9 @@ public class Vacina {
     @NotNull
     private Date data_producao;
 
+    @NotNull
+    private String faixa_etaria;
+
     public Long getId_vacina() {
         return id_vacina;
     }
@@ -102,6 +105,14 @@ public class Vacina {
         int result = 1;
         result = prime * result + ((id_vacina == null) ? 0 : id_vacina.hashCode());
         return result;
+    }
+
+    public String getFaixa_etaria() {
+        return faixa_etaria;
+    }
+
+    public void setFaixa_etaria(String faixa_etaria) {
+        this.faixa_etaria = faixa_etaria;
     }
 
     @Override
