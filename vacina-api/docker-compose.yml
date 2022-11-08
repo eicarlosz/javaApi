@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  api:
+    container_name: api
+    build: .
+    #restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://banco:3306/vacinaBD?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+    ports:
+      - 8080:8080
+    depends_on:
+      - banco
+  banco:
+    container_name: banco
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=vacinaBD
+      #- MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    ports:
+      - 3308:3306
