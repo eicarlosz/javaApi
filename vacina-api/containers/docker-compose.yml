@@ -1,0 +1,32 @@
+version: "3"
+services:
+  api:
+    container_name: api-vacinas
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: api-vacinas
+    environment:
+      MYSQL_HOST: banco
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: vacinaBD
+      MYSQL_PORT: 3306
+    ports:
+      - 8080:8080
+    depends_on:
+      - banco
+  banco:
+    container_name: banco
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=vacinaBD
+      #- MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    ports:
+      - 3308:3306
+    volumes:
+      - banco:/var/lib/mysql
+volumes:
+  banco:
